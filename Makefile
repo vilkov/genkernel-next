@@ -34,6 +34,7 @@ install: default
 	install -m 755 gen_initramfs.sh $(DESTDIR)/$(PREFIX)/share/genkernel
 	install -m 755 gen_moddeps.sh $(DESTDIR)/$(PREFIX)/share/genkernel
 	install -m 755 gen_package.sh $(DESTDIR)/$(PREFIX)/share/genkernel
+	install -m 755 gen_tmpfs.sh $(DESTDIR)/$(PREFIX)/share/genkernel
 
 	install -m 644 initramfs.mounts $(DESTDIR)/$(SYSCONFDIR)/
 

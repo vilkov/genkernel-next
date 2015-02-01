@@ -48,6 +48,7 @@ source ${GK_SHARE}/gen_initramfs.sh || gen_die "Could not read ${GK_SHARE}/gen_i
 source ${GK_SHARE}/gen_moddeps.sh || gen_die "Could not read ${GK_SHARE}/gen_moddeps.sh"
 source ${GK_SHARE}/gen_package.sh || gen_die "Could not read ${GK_SHARE}/gen_package.sh"
 source ${GK_SHARE}/gen_bootloader.sh || gen_die "Could not read ${GK_SHARE}/gen_bootloader.sh"
+source ${GK_SHARE}/gen_tmpfs.sh || gen_die "Could not read ${GK_SHARE}/gen_tmpfs.sh"
 
 TEMP=${TMPDIR}/$RANDOM.$RANDOM.$RANDOM.$$
 
@@ -126,6 +127,9 @@ done
 
 determine_real_args
 determine_config_file
+
+gen_setup_tmpfs
+echo
 
 set_kernel_arch
 
@@ -373,6 +377,8 @@ then
 fi
 
 [ "${BOOTRW}" != '' ] && mount -o remount,ro ${BOOTDIR}
+
+gen_cleanup_tmpfs
 
 echo
 print_info 1 'Do NOT report kernel bugs as genkernel bugs unless your bug'
